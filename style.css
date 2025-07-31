@@ -1,0 +1,68 @@
+/* 기본 화면 설정 */
+html, body {
+  margin: 0; padding: 0; overflow: hidden;
+  background: black;
+  width: 100vw;
+  height: 100vh;
+  font-size: 0; /* 불필요한 텍스트 간격 제거 */
+}
+
+/* 모든 주요 요소 공통 스타일 */
+#webcam, #mainVideo, #transitionEffect, #fireworksCanvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 웹캠 영상 - 사람 실루엣 보임 */
+#webcam {
+  object-fit: cover; /* 화면 꽉 채우기, 왜곡없이 자르기 */
+  z-index: 4;
+  transition: opacity 1.5s ease-in-out;
+  will-change: opacity; /* 부드러운 애니메이션을 위한 힌트 */
+}
+
+/* 메인 영상 - 초기엔 안보임, 나타날 때 자연스럽게 */
+#mainVideo {
+  object-fit: contain; /* 비율 유지하며 화면에 최대한 맞춤 */
+  background: black;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 1.5s ease-in-out;
+  will-change: opacity;
+}
+
+/* 빛 확산 효과 - 중앙에서 퍼지는 빛, 투명도 조절로 사라짐 */
+#transitionEffect {
+  z-index: 5;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255,255,255,0.85) 0%, transparent 75%);
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  will-change: opacity;
+  filter: blur(15px); /* 빛 번짐 느낌 증폭 */
+}
+
+/* 폭죽 캔버스 - 최상단에서 잔상 유지 */
+#fireworksCanvas {
+  z-index: 6;
+  pointer-events: none;
+  /* 캔버스는 JS에서 사이즈 조절하므로 여기선 기본 위치만 지정 */
+}
+
+/* Optional: 화면이 너무 작을 때 대비 */
+@media (max-aspect-ratio: 16/9) {
+  #mainVideo {
+    object-fit: cover; /* 가로가 좁을 때는 꽉 채우기 */
+  }
+}
+
+#fireworksCanvas {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 6;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 1.5s ease-in-out;
+}

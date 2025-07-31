@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Face Detection Transition</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: black;
+    }
+
+    #webcam, #mainVideo, #transitionEffect, canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #webcam {
+      z-index: 2;
+      transition: opacity 1s ease-in-out;
+    }
+
+    #mainVideo {
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    #transitionEffect {
+      z-index: 3;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 2s ease-out;
+    }
+
+    canvas {
+      z-index: 4;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- 웹캠 -->
+  <video id="webcam" autoplay muted playsinline></video>
+
+  <!-- 네가 준비한 동영상 -->
+  <video id="mainVideo" src="tobeematefinal.mp4" muted></video>
+
+  <!-- 빛 번짐 효과 -->
+  <div id="transitionEffect"></div>
+
+  <!-- 폭죽 효과 -->
+  <canvas id="fireworksCanvas"></canvas>
+
+  <!-- face-api.js 로드 -->
+  <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+
+  <!-- main.js 모듈 스크립트 로드 -->
+  <script type="module" src="main.js"></script>
+</body>
+</html>
