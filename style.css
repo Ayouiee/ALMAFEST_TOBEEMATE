@@ -37,17 +37,22 @@ html, body {
 #transitionEffect {
   z-index: 5;
   pointer-events: none;
-  background: radial-gradient(circle, rgba(255,255,255,0.85) 0%, transparent 75%);
+  background: radial-gradient(circle, rgba(255,255,255,0.85) 80%, transparent 100%);
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
   will-change: opacity;
-  filter: blur(15px); /* 빛 번짐 느낌 증폭 */
+  filter: blur(1px); /* 빛 번짐 느낌 증폭 */
 }
 
 /* 폭죽 캔버스 - 최상단에서 잔상 유지 */
 #fireworksCanvas {
   z-index: 6;
   pointer-events: none;
+  body {
+  margin: 0;
+  overflow: hidden;
+  background: black;
+}
   /* 캔버스는 JS에서 사이즈 조절하므로 여기선 기본 위치만 지정 */
 }
 

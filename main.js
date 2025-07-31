@@ -99,7 +99,7 @@ function stopFireworks() {
 }
 
 async function start() {
-  await faceapi.nets.tinyFaceDetector.loadFromUri('/models');
+  await faceapi.nets.tinyFaceDetector.loadFromUri('./models');
 
   const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
   webcam.srcObject = stream;
